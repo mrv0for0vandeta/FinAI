@@ -409,7 +409,7 @@ export function Dashboard({
                     <td className="px-4 py-2">${goal.target.toLocaleString()}</td>
                     <td className="px-4 py-2">${goal.current.toLocaleString()}</td>
                   </tr>
-                ))}
+            ))}
               </tbody>
             </table>
           </div>
@@ -510,7 +510,7 @@ export function Dashboard({
       {/* AI Budget Suggestions Section */}
       <div className="mt-6">
         <AIRecommendation
-          message={aiSuggestions.map((s, i) => <div key={i}>• {s}</div>)}
+          message={aiSuggestions.map((s) => `• ${s}`).join('\n')}
           type="info"
         />
       </div>

@@ -14,7 +14,7 @@ const debtTypes = ['Personal Loan', 'Credit Card', 'Mortgage', 'Student Loan', '
 
 export function LoanModal({ isOpen, onClose, onSave, debt }: DebtModalProps) {
   const [creditor, setCreditor] = useState('');
-  const [type, setType] = useState('loan');
+  const [type, setType] = useState('Personal Loan');
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -34,7 +34,7 @@ export function LoanModal({ isOpen, onClose, onSave, debt }: DebtModalProps) {
       setInterestRate(debt.interestRate?.toString() || '');
     } else {
       setCreditor('');
-      setType('loan');
+      setType('Personal Loan');
       setAmount('');
       setDescription('');
       setStartDate('');
