@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Always show vertical scrollbar */
+html {
+  overflow-y: scroll;
+}
