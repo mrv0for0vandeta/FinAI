@@ -31,6 +31,9 @@ export function LoginForm({ onSwitchToRegister }: LoginFormProps) {
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="text-center mb-8">
+        <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <span className="text-white font-bold text-2xl">F</span>
+        </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
         <p className="text-gray-600">Sign in to your FinAI Planner account</p>
       </div>
@@ -109,13 +112,6 @@ export function LoginForm({ onSwitchToRegister }: LoginFormProps) {
             Create Account
           </button>
         </p>
-      </div>
-
-      {/* Demo Credentials */}
-      <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-        <p className="text-sm text-blue-800 font-medium mb-2">Demo Account:</p>
-        <p className="text-xs text-blue-600">Email: demo@finai.com</p>
-        <p className="text-xs text-blue-600">Password: demo123</p>
       </div>
     </div>
   );
