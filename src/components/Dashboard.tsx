@@ -119,6 +119,7 @@ export function Dashboard({
   addSavingsGoal,
   setActiveTab
 }: DashboardProps) {
+  // Move all hooks to the top
   const [showIncomeForm, setShowIncomeForm] = useState(monthlyIncome === 0);
   const [showDebtModal, setShowDebtModal] = useState(false);
   const [showDebtPaymentModal, setShowDebtPaymentModal] = useState(false);
@@ -126,9 +127,42 @@ export function Dashboard({
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
   const [showAddGoalModal, setShowAddGoalModal] = useState(false);
 
+  const today = new Date();
+  const last31Days = useMemo(() => {
+    const arr = [];
+    for (let i = 30; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      arr.push({
+        date: d.toISOString().split('T')[0],
+        income: 0,
+        expenses: 0,
+        savings: 0,
+      });
+    }
+    // Fill with real data if available (TODO: map from transactions)
+    return arr;
+  }, [today]);
+
+  const last12Months = useMemo(() => {
+    const arr = [];
+    for (let i = 11; i >= 0; i--) {
+      const d = new Date(today);
+      d.setMonth(today.getMonth() - i);
+      arr.push({
+        month: d.toLocaleString('en-US', { month: 'short', year: '2-digit' }),
+        income: 0,
+        expenses: 0,
+        savings: 0,
+      });
+    }
+    // Fill with real data if available (TODO: map from monthlyTrends)
+    return arr;
+  }, [today]);
+
   const hasData = budgetCategories.length > 0 || savingsGoals.length > 0 || monthlyIncome > 0;
 
-  // If user has no data, show getting started guide
+  // Now do the early return
   if (!hasData) {
     return (
       <div className="space-y-6">
@@ -228,40 +262,6 @@ export function Dashboard({
 
   const topSavingsGoals = savingsGoals.slice(0, 3);
   const activeInsight = insights.find(insight => insight.type === 'warning') || insights[0];
-
-  // Prepare daily and monthly data
-  const today = new Date();
-  const last31Days = useMemo(() => {
-    const arr = [];
-    for (let i = 30; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(today.getDate() - i);
-      arr.push({
-        date: d.toISOString().split('T')[0],
-        income: 0,
-        expenses: 0,
-        savings: 0,
-      });
-    }
-    // Fill with real data if available (TODO: map from transactions)
-    return arr;
-  }, [today]);
-
-  const last12Months = useMemo(() => {
-    const arr = [];
-    for (let i = 11; i >= 0; i--) {
-      const d = new Date(today);
-      d.setMonth(today.getMonth() - i);
-      arr.push({
-        month: d.toLocaleString('en-US', { month: 'short', year: '2-digit' }),
-        income: 0,
-        expenses: 0,
-        savings: 0,
-      });
-    }
-    // Fill with real data if available (TODO: map from monthlyTrends)
-    return arr;
-  }, [today]);
 
   const aiSuggestions = generateBudgetSuggestions({ budgetCategories, savingsGoals, debts, monthlyIncome, totalSpent, savingsRate });
 
