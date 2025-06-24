@@ -77,7 +77,7 @@ export function Header({ activeTab, onTabChange, extraTabs = [], rightContent, c
               <button className="p-2 rounded-full hover:bg-gray-100 focus:outline-none relative" onClick={markAllAsRead}>
                 <Bell className="w-6 h-6 text-gray-600" />
                 {unreadCount > 0 && <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />}
-              </button>
+            </button>
               <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-lg z-50 hidden group-hover:block">
                 <div className="p-4 text-gray-700">
                   {notifications.length === 0 ? 'No notifications yet.' : (

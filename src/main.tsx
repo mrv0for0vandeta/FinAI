@@ -7,7 +7,7 @@ import { NotificationProvider } from './contexts/NotificationContext';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <NotificationProvider>
-      <App />
+    <App />
     </NotificationProvider>
   </StrictMode>
 );

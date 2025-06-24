@@ -291,10 +291,10 @@ export function Budget({
           {budgetCategories.map((category) => (
             <div key={category.id} className="flex items-center group">
               <div className="flex-1">
-                <BudgetCategory 
-                  {...category} 
-                  onEdit={() => handleEditCategory(category)}
-                />
+            <BudgetCategory 
+              {...category} 
+              onEdit={() => handleEditCategory(category)}
+            />
               </div>
               <button
                 className="ml-2 p-2 text-red-600 hover:bg-red-50 rounded-full opacity-0 group-hover:opacity-100 transition"
